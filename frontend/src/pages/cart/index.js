@@ -1,3 +1,4 @@
+import React from 'react'
 import { PurchaseList, Title, Container, Main, Button } from '../../components'
 import styles from './styles.module.css'
 import { useRecipes } from '../../utils/index.js'

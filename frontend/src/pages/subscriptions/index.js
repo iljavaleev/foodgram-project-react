@@ -1,3 +1,4 @@
+import React from 'react'
 import { Title, Pagination, Container, Main, SubscriptionList  } from '../../components'
 import { useSubscriptions } from '../../utils'
 import api from '../../api'

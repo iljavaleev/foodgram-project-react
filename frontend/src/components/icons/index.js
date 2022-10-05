@@ -1,3 +1,4 @@
+import React from 'react'
 import StarIcon from './star'
 import StarActiveIcon from './star-active'
 import StarBigIcon from './star-big'

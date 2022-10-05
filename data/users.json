@@ -1,0 +1,37 @@
+[
+  {
+    "email": "bingobongo@yamdb.fake",
+    "username": "bingobongo",
+    "first_name": "bingo",
+    "last_name": "bongo",
+    "password": "bingobongopass123"
+  },
+  {
+    "email": "capt_obvious@yamdb.fake",
+    "username": "capt_obvious",
+    "first_name": "capt",
+    "last_name": "obvious",
+    "password": "capt_obviouspass123"
+  },
+  {
+    "email": "faust@yamdb.fake",
+    "username": "faust",
+    "first_name": "faust",
+    "last_name": "faust",
+    "password": "faustpass123"
+  },
+  {
+    "email": "reviewer@yamdb.fake",
+    "username": "reviewer",
+    "first_name": "reviewer",
+    "last_name": "reviewer",
+    "password": "reviewerpass123"
+  },
+  {
+    "email": "angry@yamdb.fake",
+    "username": "angry",
+    "first_name": "angry",
+    "last_name": "angry",
+    "password": "angrypass123"
+  }
+]

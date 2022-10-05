@@ -1,3 +1,4 @@
+import React from 'react'
 import styles from './style.module.css'
 import { LinkComponent, Icons, Button, TagsContainer } from '../index'
 import { useState, useContext } from 'react'
