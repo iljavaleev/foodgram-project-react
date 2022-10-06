@@ -1,6 +1,6 @@
 version: '3'
 services:
-# я просто похоже не понял задание и в деплой вообще пока лез, просто накидал копипасту из других проектов
+
   db:
     image: postgres:13.0-alpine
     volumes:
@@ -9,7 +9,7 @@ services:
       - ./.env
 
   backend:
-    image: valeevilja/foodram_backend:v1.0
+    image: valeevilja/foodgram_backend:v1
     restart: always
     volumes:
       - static_value:/app/static/
@@ -20,7 +20,7 @@ services:
       - ./.env
 
   frontend:
-    image: valeevilja/foodram_frontend:v1.0
+    image: valeevilja/foodgram_frontend:v1
     restart: always
     volumes:
       - ../frontend/:/app/result_build/
