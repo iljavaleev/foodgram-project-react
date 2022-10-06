@@ -7,9 +7,8 @@ from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
 from djoser.views import UserViewSet as DjoserUserViewSet
 from rest_framework import filters, mixins, status, viewsets
-from rest_framework.pagination import (LimitOffsetPagination,
-                                       PageNumberPagination)
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.pagination import PageNumberPagination
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -27,22 +26,16 @@ from .serializers import (AddRecipeSerializer, FollowSerializer,
 User = get_user_model()
 
 
-class GetMixin(viewsets.GenericViewSet,
-               mixins.ListModelMixin,
-               mixins.RetrieveModelMixin):
-    pass
-
-
 class UsersListView(DjoserUserViewSet, mixins.CreateModelMixin):
     pagination_class = PageNumberPagination
 
 
-class TagViewSet(GetMixin):
+class TagViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Tag.objects.all()
     serializer_class = MyTagSerializer
 
 
-class IngredientViewSet(GetMixin):
+class IngredientViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
     filter_backends = [filters.SearchFilter]
@@ -118,21 +111,21 @@ class DownloadShoppingCartView(APIView):
         flat_ingredients = (item for i in ingredients for item in i)
         data = ((f'{i.ingredient.name} ({i.ingredient.measurement_unit})',
                  i.amount) for i in flat_ingredients)
-        c = Counter()
+        ingredients_merged = Counter()
         for k, v in data:
-            c[k] += v
+            ingredients_merged[k] += v
         myfile = StringIO()
-        if c:
-            for k, v in c.items():
+        if ingredients_merged:
+            for k, v in ingredients_merged.items():
                 myfile.write(f'\u2022  {k} \u2014 {v}\n')
         else:
-            myfile.write(f'Ваш список пока покупок пуст')
+            myfile.write('Ваш список пока покупок пуст')
         myfile.flush()
         myfile.seek(0)
         response = HttpResponse(myfile.getvalue(), content_type='text/plain')
         myfile.close()
-        response['Content-Disposition'] = (f'attachment; '
-                                           f'filename=shopping_card.txt')
+        response['Content-Disposition'] = ('attachment; '
+                                           'filename=shopping_card.txt')
         return response
 
 

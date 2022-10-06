@@ -13,45 +13,36 @@ def run():
     with open('../data/ingredients.json') as fhand:
         data = json.load(fhand)
 
-        Ingredient.objects.all().delete()
-
         for record in data:
             print(record)
-            ingredient = Ingredient(
-                name=record['name'],
-                measurement_unit=record['measurement_unit']
-            )
-            ingredient.save()
+            (Ingredient.objects.
+             get_or_create(name=record['name'],
+                           measurement_unit=record['measurement_unit']))
 
     with open('../data/users.json') as fhand:
         data = json.load(fhand)
 
-        User.objects.all().delete()
-
-        for record in data:
-            print(record)
-            user = User(username=record['username'],
-                        email=record['email'],
-                        first_name=record['first_name'],
-                        last_name=record['last_name'],
-                        password=record['password'])
-            user.save()
+        users = User.objects.all()
+        if not users:
+            for record in data:
+                print(record)
+                User(username=record['username'],
+                     email=record['email'],
+                     first_name=record['first_name'],
+                     last_name=record['last_name'],
+                     password=record['password']).save()
 
     with open('../data/tags.json') as fhand:
         data = json.load(fhand)
 
-        Tag.objects.all().delete()
-
         for record in data:
             print(record)
-            tag = Tag(name=record['name'], color=record['color'],
-                      slug=record['slug'])
-            tag.save()
+            Tag.objects.get_or_create(name=record['name'],
+                                      color=record['color'],
+                                      slug=record['slug'])
 
     with open('../data/recipes.json') as fhand:
         data = json.load(fhand)
-
-        Recipe.objects.all().delete()
 
         for record in data:
             print(record)
@@ -62,11 +53,10 @@ def run():
                     ingredient=get_object_or_404(Ingredient, id=i['id']),
                     amount=i['amount']) for i in data['ingredients']]
             tag_list = [get_object_or_404(Tag, id=i) for i in data['tags']]
-            recipe = Recipe(name=record['name'],
-                            author=author,
-                            ingredients=ingredient_list,
-                            tags=tag_list,
-                            image=data['image'],
-                            text=data['text'],
-                            cooking_time=data['cooking_time'])
-            recipe.save()
+            Recipe.objects.get_or_create(name=record['name'],
+                                         author=author,
+                                         ingredients=ingredient_list,
+                                         tags=tag_list,
+                                         image=data['image'],
+                                         text=data['text'],
+                                         cooking_time=data['cooking_time'])

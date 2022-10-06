@@ -114,12 +114,14 @@ class AddRecipeSerializer(serializers.ModelSerializer):
         fields = ['tags', 'ingredients', 'name', 'image', 'text',
                   'cooking_time', 'author']
 
+    # Насчет проверки в одну строку, я ее использовал, но что-то
+    # там было с unhashable, поэтому остановился на этом варианте
     def unique(self, data):
-        check_list = []
+        check_list = set()
         for d in data:
             if d in check_list:
                 return False
-            check_list.append(d)
+            check_list.add(d)
         return True
 
     def validate(self, data):
@@ -134,10 +136,13 @@ class AddRecipeSerializer(serializers.ModelSerializer):
                 'errors': 'Ингредиенты должны быть уникальными'
             })
 
-        if [ingredient for ingredient in ingredients if ingredient['amount'] <= 0]:
+        zero_amount_ingredients = [ingredient for ingredient in ingredients
+                                   if ingredient['amount'] <= 0]
+        if zero_amount_ingredients:
             raise serializers.ValidationError(
-                'Количество ингредиента должно быть больше нуля'
-            )
+                (f'В ингридиентах '
+                 f'{", ".join(x["name"] for x in zero_amount_ingredients)} '
+                 f'должно быть указано количество больше нуля'))
 
         tags = data.get('tags')
 
