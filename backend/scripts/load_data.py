@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404
 
 from recipes.models import Ingredient, IngredientQuantity, Recipe, Tag
 
-# python3 manage.py runscript scripts.{file_name} without .py
+
 User = get_user_model()
 
 
@@ -45,7 +45,6 @@ def run():
         for record in data:
             print(record)
             author = get_object_or_404(User, id=record['author'])
-            print(record['ingredients'])
             ingredient_list = [
                 get_object_or_404(
                     IngredientQuantity,
