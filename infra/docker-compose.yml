@@ -21,14 +21,14 @@ services:
 
   frontend:
     image: valeevilja/foodgram_frontend:v1
-    restart: always
     volumes:
       - ../frontend/:/app/result_build/
     depends_on:
-      - backend
+      - db
 
   nginx:
     image: nginx:1.19.3
+    restart: always
     ports:
       - "80:80"
     volumes:

@@ -114,12 +114,6 @@ class AddRecipeSerializer(serializers.ModelSerializer):
         fields = ['tags', 'ingredients', 'name', 'image', 'text',
                   'cooking_time', 'author']
 
-    # Насчет проверки в одну строку, я ее использовал, но что-то
-    # там было с unhashable, поэтому остановился на этом варианте
-
-    # Раз уж тут начал писать. Почему-то не получается отправить на проверку
-    # нормальным способом, приходится архивом. Техподдержка говорит, что проект
-    # слишком много весит, но я не знаю что еще тут можно удалить
     def unique(self, data):
         check_list = set()
         for d in data:
