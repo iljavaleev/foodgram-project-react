@@ -20,7 +20,7 @@ SECRET_KEY = ('django-insecure-0op9%v1m&u!urq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['backend', '51.250.44.9', 'forfoodgram.ddns.net']
 
 
 # Application definition
