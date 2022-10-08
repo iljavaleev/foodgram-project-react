@@ -19,7 +19,7 @@ SECRET_KEY = ('django-insecure-0op9%v1m&u!urq'
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['forfoodgram.ddns.net', 'backend', '51.250.44.9']
+ALLOWED_HOSTS = [ '51.250.44.9', 'forfoodgram.ddns.net', 'backend']
 
 
 # Application definition
