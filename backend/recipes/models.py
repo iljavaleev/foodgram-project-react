@@ -16,10 +16,10 @@ class Tag(models.Model):
 
 class Ingredient(models.Model):
     name = models.CharField(
-        max_length=100, blank=False
+        max_length=200, blank=False
     )
     measurement_unit = models.CharField(
-        max_length=50, blank=False
+        max_length=100, blank=False
     )
 
     def __str__(self):

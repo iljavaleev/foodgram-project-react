@@ -42,20 +42,23 @@ cp .env.example .env
 
 * Из дериктории infra/ запустить docker-compose командой:
 ```
-docker-compose up -d --build
+sudo docker-compose up -d --build
 ```
-
+* Загрузить статические файлы:
+```
+sudo docker-compose exec backend python manage.py collectstatic
+```
 * Выполнить миграции:
 ```
-docker-compose exec backend python manage.py migrate
+sudo docker-compose exec backend python manage.py migrate
 ```
 
 * Создать суперпользователя:
 ```
-docker-compose exec backend python manage.py createsuperuser
+sudo docker-compose exec backend python manage.py createsuperuser
 ```
 
-* При необходимости загрузить тестовую информацию из fixtures.json
+* При необходимости загрузить тестовые данные:
 ```
-docker-compose exec backend python manage.py runscript scripts.load_data
+sudo docker-compose exec backend python manage.py runscript scripts.load_data
 ```

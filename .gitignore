@@ -145,3 +145,4 @@ dmypy.json
 
 .mypy_cache
 /backend/media/
+node_modules/

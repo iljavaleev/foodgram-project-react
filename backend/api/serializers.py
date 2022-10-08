@@ -115,11 +115,11 @@ class AddRecipeSerializer(serializers.ModelSerializer):
                   'cooking_time', 'author']
 
     def unique(self, data):
-        check_list = set()
+        check_list = []
         for d in data:
             if d in check_list:
                 return False
-            check_list.add(d)
+            check_list.append(d)
         return True
 
     def validate(self, data):

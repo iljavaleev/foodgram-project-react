@@ -38,23 +38,3 @@ def run():
             Tag.objects.get_or_create(name=record['name'],
                                       color=record['color'],
                                       slug=record['slug'])
-
-    with open('./data/recipes.json') as fhand:
-        data = json.load(fhand)
-
-        for record in data:
-            print(record)
-            author = get_object_or_404(User, id=record['author'])
-            ingredient_list = [
-                get_object_or_404(
-                    IngredientQuantity,
-                    ingredient=get_object_or_404(Ingredient, id=i['id']),
-                    amount=i['amount']) for i in record['ingredients']]
-            tag_list = [get_object_or_404(Tag, id=i) for i in record['tags']]
-            Recipe.objects.get_or_create(name=record['name'],
-                                         author=author,
-                                         ingredients=ingredient_list,
-                                         tags=tag_list,
-                                         image=record['image'],
-                                         text=record['text'],
-                                         cooking_time=record['cooking_time'])

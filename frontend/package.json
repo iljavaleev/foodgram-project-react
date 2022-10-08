@@ -11,7 +11,6 @@
     "react-dom": "^16.14.0",
     "react-meta-tags": "^1.0.1",
     "react-router-dom": "^5.2.0",
-
     "react-scripts": "^5.0.0",
     "web-vitals": "^1.0.1"
   },
@@ -39,5 +38,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://backend:8000/"
+  "proxy": "http://web:8000/"
 }
