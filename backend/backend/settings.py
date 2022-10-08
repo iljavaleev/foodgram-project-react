@@ -17,10 +17,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = ('django-insecure-0op9%v1m&u!urq'
               '=1l8%&zefx8b%p6&l(#1q2(m_s+l@i_g01_9')
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['backend', '51.250.44.9', 'forfoodgram.ddns.net']
+ALLOWED_HOSTS = ['forfoodgram.ddns.net', 'backend', '51.250.44.9']
 
 
 # Application definition
