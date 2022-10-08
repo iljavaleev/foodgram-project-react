@@ -2,9 +2,7 @@ import json
 
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
-
 from recipes.models import Ingredient, IngredientQuantity, Recipe, Tag
-
 
 User = get_user_model()
 
