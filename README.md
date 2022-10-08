@@ -62,3 +62,6 @@ sudo docker-compose exec backend python manage.py createsuperuser
 ```
 sudo docker-compose exec backend python manage.py runscript scripts.load_data
 ```
+![foodgram_workflow](https://github.com/iljavaleev/foodgram-project-react/actions/workflows/main.yml/badge.svg)
+
+Сервис доступен по адресу [http://forfoodgram.ddns.net/](http://forfoodgram.ddns.net/)
