@@ -3,7 +3,6 @@ from django.shortcuts import get_object_or_404
 from djoser.serializers import UserSerializer
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
-
 from recipes.models import (Fav, Ingredient, IngredientQuantity, Recipe,
                             ShoppingCart, Subscription, Tag)
 
@@ -22,8 +21,8 @@ class MyUserSerializer(UserSerializer):
         request = self.context.get('request')
         if request is None or request.user.is_anonymous:
             return False
-        return Subscription.objects.filter(author=obj, user=request.user)\
-            .exists()
+        return (Subscription.objects.filter(author=obj, user=request.user)
+                .exists())
 
 
 class MyTagSerializer(serializers.ModelSerializer):
